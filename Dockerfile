@@ -4,9 +4,11 @@ FROM php:8.1-apache
 # Set working directory
 WORKDIR /var/www/html
 
-# Install cURL
+# Install cURL and libcurl development libraries
 RUN apt-get update && apt-get install -y \
     curl \
+    libcurl4-openssl-dev \
+    pkg-config \
     && docker-php-ext-install curl
 
 # Copy application files
