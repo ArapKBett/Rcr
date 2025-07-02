@@ -14,12 +14,13 @@ RUN apt-get update && apt-get install -y \
 # Copy application files
 COPY . /var/www/html/
 
+# Create data directory and set permissions
+RUN mkdir -p /var/www/html/data \
+    && chown -R www-data:www-data /var/www/html/data \
+    && chmod -R 755 /var/www/html/data
+
 # Enable Apache rewrite module
 RUN a2enmod rewrite
-
-# Set permissions for data directory
-RUN chown -R www-data:www-data /var/www/html/data \
-    && chmod -R 755 /var/www/html/data
 
 # Expose port 80
 EXPOSE 80
