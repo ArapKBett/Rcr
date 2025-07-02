@@ -22,6 +22,9 @@ RUN mkdir -p /var/www/html/data \
 # Enable Apache rewrite module
 RUN a2enmod rewrite
 
+# Configure Apache to suppress ServerName warning
+RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
+
 # Expose port 80
 EXPOSE 80
 
